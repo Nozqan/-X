@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Akrep İndirici</string>
+    <string name="app_subtitle">Twitter / X Video İndirici</string>
+    <string name="paste_url_hint">Twitter/X video URL\'sini yapıştırın…</string>
+    <string name="btn_analyze">Videoyu Analiz Et</string>
+    <string name="btn_download">İndir</string>
+    <string name="btn_cancel">İptal</string>
+    <string name="btn_paste">Yapıştır</string>
+    <string name="btn_clear">Temizle</string>
+    <string name="select_quality">Kalite Seçin</string>
+    <string name="quality_label">Kalite</string>
+    <string name="file_size_label">Dosya Boyutu</string>
+    <string name="download_started">İndirme başlatıldı</string>
+    <string name="download_complete">İndirme tamamlandı!</string>
+    <string name="download_failed">İndirme başarısız</string>
+    <string name="analyzing">Analiz ediliyor…</string>
+    <string name="no_video_found">Video bulunamadı</string>
+    <string name="invalid_url">Geçersiz Twitter/X URL\'si</string>
+    <string name="permission_required">Depolama izni gerekli</string>
+    <string name="open_file">Dosyayı Aç</string>
+    <string name="share">Paylaş</string>
+    <string name="history">İndirme Geçmişi</string>
+    <string name="settings">Ayarlar</string>
+    <string name="about">Hakkında</string>
+    <string name="version">Sürüm 1.0.0</string>
+    <string name="how_to_use">Nasıl Kullanılır?</string>
+    <string name="how_to_use_desc">1. Twitter/X uygulamasında bir video tweet\'i açın\n2. Paylaş butonuna basın\n3. \"Akrep İndirici\" seçin\n4. Kalite seçin ve indirin</string>
+    <string name="tweet_author">Yazar</string>
+    <string name="tweet_content">İçerik</string>
+    <string name="available_qualities">Mevcut Kaliteler</string>
+    <string name="downloading">İndiriliyor…</string>
+    <string name="download_progress">%d%%</string>
+    <string name="best_quality">En İyi Kalite</string>
+    <string name="saved_to">Kaydedildi: İndirilenler/AkrepIndirici</string>
+</resources>
