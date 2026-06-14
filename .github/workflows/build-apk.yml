@@ -32,11 +32,11 @@ jobs:
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: AkrepIndirici-v2.2.5Ozkan-Debug
-          path: app/build/outputs/apk/debug/*.apk
+          name: AkrepIndirici-v2.2.5Ozkan-Debug-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: AkrepIndirici-v2.2.5Ozkan-Release
-          path: app/build/outputs/apk/release/*.apk
+          name: AkrepIndirici-v2.2.5Ozkan-Release-APK
+          path: app/build/outputs/apk/release/app-release.apk

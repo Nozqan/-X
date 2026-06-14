@@ -16,7 +16,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/home/ubuntu/project_x/akrep_key.jks")
+            storeFile file("akrep_key.jks")
             storePassword "123456"
             keyAlias "akrep_alias"
             keyPassword "123456"
