@@ -6,47 +6,26 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <!-- ÜST BAR (LOGO VE BAŞLIK) -->
-    <LinearLayout
+    <!-- HEADER (TEMİZ, MAT SİYAH) -->
+    <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp"
+        android:layout_height="72dp"
+        android:background="@color/background"
+        android:paddingHorizontal="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@android:drawable/ic_menu_compass"
-            app:tint="@color/orange_accent" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
-            android:text="X DOWNLOADER"
-            android:textColor="@color/text_primary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/btnSettings"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_menu_manage"
-            app:tint="@color/text_secondary" />
-
-        <ImageView
+        <ImageButton
             android:id="@+id/btnLogin"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@android:drawable/ic_menu_myplaces"
-            app:tint="@color/text_secondary" />
-    </LinearLayout>
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_send"
+            android:padding="8dp"
+            app:tint="@color/twitter_blue" />
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -58,23 +37,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
-            <!-- GİRİŞ ALANI -->
+            <!-- GİRİŞ ALANI (MODERN) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="56dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
                     android:background="@drawable/bg_input_field"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
+                    android:paddingHorizontal="20dp">
 
                     <EditText
                         android:id="@+id/etUrl"
@@ -82,38 +59,39 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:hint="Yapıştırın Linkinizi Buraya..."
+                        android:hint="X Video Linkini Buraya Bırakın..."
                         android:inputType="textUri"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_hint"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:id="@+id/btnPaste"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:src="@android:drawable/ic_menu_edit"
                         app:tint="@color/text_secondary" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnAnalyze"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_marginStart="12dp"
-                    android:backgroundTint="@color/orange_accent"
-                    android:text="İNDİR →"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_modern_button"
+                    android:text="ANALİZ ET VE İNDİR"
                     android:textColor="@color/text_primary"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:cornerRadius="12dp" />
+                    app:backgroundTint="@null" />
             </LinearLayout>
 
-            <!-- ANALİZ SONUCU KARTI -->
+            <!-- ANALİZ SONUCU -->
             <LinearLayout
                 android:id="@+id/layoutResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -121,8 +99,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#1A1A1A"
-                    app:cardCornerRadius="16dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:cardCornerRadius="24dp"
                     app:cardElevation="0dp">
 
                     <RelativeLayout
@@ -132,123 +110,63 @@
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/ivThumbnail"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="220dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.MediumComponent" />
 
                         <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:layout_centerInParent="true"
                             android:src="@android:drawable/ic_media_play"
                             app:tint="#FFFFFF" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBottom="@id/ivThumbnail"
-                            android:layout_alignEnd="@id/ivThumbnail"
-                            android:layout_margin="12dp"
-                            android:background="#80000000"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="2dp"
-                            android:text="12:45 min"
-                            android:textColor="#FFFFFF"
-                            android:textSize="10sp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvTweetText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="Video Başlığı Buraya Gelecek..."
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="X Downloader • Video İndirici"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Video Kalitesi Seçin:"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvQualities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="20dp" />
 
                 <Button
                     android:id="@+id/btnDownloadSelected"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/orange_accent"
+                    android:background="@drawable/bg_modern_button"
                     android:text="📥 SEÇİLENİ İNDİR"
                     android:textColor="@color/text_primary"
                     android:textStyle="bold"
-                    app:cornerRadius="12dp" />
+                    app:backgroundTint="@null" />
             </LinearLayout>
 
-            <!-- İNDİRİLEN VİDEOLAR BAŞLIĞI -->
+            <!-- GEÇMİŞ (GRID) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="İNDİRİLEN VİDEOLAR"
+                android:layout_marginTop="40dp"
+                android:text="İNDİRİLENLER"
                 android:textColor="@color/text_primary"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRecentVideos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ALT MENÜ -->
+    <!-- ALT NAV (LÜKS) -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:background="#121212"
+        android:layout_height="80dp"
+        android:background="@color/matte_black"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -260,16 +178,10 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:src="@android:drawable/ic_menu_view"
-                app:tint="@color/text_secondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="@color/text_secondary"
-                android:textSize="10sp" />
+                app:tint="@color/orange_accent" />
         </LinearLayout>
 
         <LinearLayout
@@ -280,69 +192,53 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:src="@android:drawable/stat_sys_download"
-                app:tint="@color/orange_accent" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="İndirilenler"
-                android:textColor="@color/orange_accent"
-                android:textSize="10sp" />
+                app:tint="@color/text_secondary" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnNavHistory"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:src="@android:drawable/ic_menu_recent_history"
                 app:tint="@color/text_secondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Geçmiş"
-                android:textColor="@color/text_secondary"
-                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnNavSettings"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:src="@android:drawable/ic_menu_manage"
                 app:tint="@color/text_secondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ayarlar"
-                android:textColor="@color/text_secondary"
-                android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- LOADING OVERLAY -->
+    <!-- LOADING -->
     <FrameLayout
         android:id="@+id/layoutLoading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E6000000"
+        android:background="#F2000000"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone">
         <ProgressBar
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:indeterminateTint="@color/orange_accent" />
     </FrameLayout>

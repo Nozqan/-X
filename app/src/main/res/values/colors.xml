@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- X DOWNLOADER Modern Tema Renkleri -->
-    <color name="primary">#E6B800</color> <!-- Lüks Altın Turuncu -->
+    <color name="primary">#FF6D00</color> <!-- Parlak Turuncu (Kapak için) -->
     <color name="primary_dark">#000000</color>
-    <color name="primary_variant">#1A1A1A</color>
-    <color name="secondary">#E6B800</color>
+    <color name="primary_variant">#000000</color>
+    <color name="secondary">#FF6D00</color>
     
-    <!-- AMOLED Siyah ve Koyu Griler -->
-    <color name="background">#0D0D0D</color> <!-- Çok Koyu Arkaplan -->
-    <color name="surface">#1A1A1A</color> <!-- Kart ve Giriş Alanı Arkaplanı -->
-    <color name="surface_variant">#262626</color>
+    <!-- AMOLED Mat Siyah -->
+    <color name="background">#000000</color> <!-- Tam Siyah -->
+    <color name="surface">#121212</color> <!-- Mat Siyah Kartlar -->
+    <color name="surface_variant">#1E1E1E</color>
+    <color name="matte_black">#121212</color>
+    <color name="twitter_blue">#1DA1F2</color>
     
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#9E9E9E</color>
     <color name="text_hint">#555555</color>
     
-    <color name="orange_accent">#E6B800</color>
+    <color name="orange_accent">#FF6D00</color>
     <color name="divider">#222222</color>
     
     <!-- Kalite Rozetleri İçin (Gerekirse) -->

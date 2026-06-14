@@ -3,16 +3,22 @@ package com.akrep.xdownloader.ui;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.concurrent.Executor;
 
 import com.akrep.xdownloader.databinding.ActivityMainBinding;
 import com.akrep.xdownloader.model.VideoInfo;
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel viewModel;
     private QualityAdapter qualityAdapter;
     private VideoQuality selectedQuality;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +40,45 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        prefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         
+        if (prefs.getBoolean("biometric_lock", false)) {
+            checkBiometric();
+        } else {
+            initApp();
+        }
+    }
+
+    private void checkBiometric() {
+        Executor executor = ContextCompat.getMainExecutor(this);
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                initApp();
+            }
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                finish();
+            }
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Nebi Özkan - Güvenli Giriş")
+                .setSubtitle("Lütfen kimliğinizi doğrulayın")
+                .setNegativeButtonText("Çıkış")
+                .build();
+
+        biometricPrompt.authenticate(promptInfo);
+    }
+
+    private void initApp() {
         setupUI();
         observeViewModel();
         requestPermissions();
@@ -72,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupUI() {
         binding.rvQualities.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvRecentVideos.setLayoutManager(new GridLayoutManager(this, 2));
         
         // İndir butonu (Analiz başlatır)
         binding.btnAnalyze.setOnClickListener(v -> {
@@ -116,14 +161,21 @@ public class MainActivity extends AppCompatActivity {
         });
         
         // Ayarlar butonu
-        binding.bottomNav.getChildAt(3).setOnClickListener(v -> {
+        binding.btnNavSettings.setOnClickListener(v -> {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             overridePendingTransition(com.akrep.xdownloader.R.anim.fade_in, com.akrep.xdownloader.R.anim.slide_out_left);
         });
+
+        // Geçmiş Butonu
+        binding.btnNavHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GalleryActivity.class);
+            startActivity(intent);
+            overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
+        });
         
         // Twitter/X Giriş Butonu - Eski Kuş İkonu (Simülasyon)
-        binding.btnLogin.setImageResource(android.R.drawable.ic_menu_send); // Gerçek ikon için mipmap güncellenebilir
+        binding.btnLogin.setImageResource(android.R.drawable.ic_menu_send);
         binding.btnLogin.setPadding(12, 12, 12, 12);
     }
 
