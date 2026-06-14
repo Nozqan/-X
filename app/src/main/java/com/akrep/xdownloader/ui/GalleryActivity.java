@@ -96,6 +96,7 @@ public class GalleryActivity extends AppCompatActivity {
                 Intent intent = new Intent(GalleryActivity.this, VideoPlayerActivity.class);
                 intent.putExtra("video_path", file.getAbsolutePath());
                 startActivity(intent);
+                overridePendingTransition(com.akrep.xdownloader.R.anim.scale_up, android.R.anim.fade_out);
             });
         }
 

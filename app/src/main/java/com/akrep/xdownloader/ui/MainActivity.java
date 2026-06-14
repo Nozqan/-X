@@ -38,6 +38,36 @@ public class MainActivity extends AppCompatActivity {
         setupUI();
         observeViewModel();
         requestPermissions();
+        handleIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (intent != null && Intent.ACTION_SEND.equals(intent.getAction()) && "text/plain".equals(intent.getType())) {
+            String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            if (sharedText != null) {
+                String url = extractUrl(sharedText);
+                if (url != null) {
+                    binding.etUrl.setText(url);
+                    viewModel.analyzeUrl(url);
+                }
+            }
+        }
+    }
+
+    private String extractUrl(String text) {
+        String[] parts = text.split("\\s+");
+        for (String part : parts) {
+            if (part.startsWith("http") && (part.contains("twitter.com") || part.contains("x.com"))) {
+                return part;
+            }
+        }
+        return null;
     }
 
     private void setupUI() {
@@ -73,13 +103,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Alt Menü - İndirilenler
         binding.btnNavDownloads.setOnClickListener(v -> {
-            startActivity(new Intent(this, GalleryActivity.class));
+            Intent intent = new Intent(this, GalleryActivity.class);
+            startActivity(intent);
+            overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
         });
 
         // Giriş butonu
         binding.btnLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(com.akrep.xdownloader.R.anim.scale_up, android.R.anim.fade_out);
         });
+        
+        // Ayarlar butonu
+        binding.bottomNav.getChildAt(3).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(com.akrep.xdownloader.R.anim.fade_in, com.akrep.xdownloader.R.anim.slide_out_left);
+        });
+        
+        // Twitter/X Giriş Butonu - Eski Kuş İkonu (Simülasyon)
+        binding.btnLogin.setImageResource(android.R.drawable.ic_menu_send); // Gerçek ikon için mipmap güncellenebilir
+        binding.btnLogin.setPadding(12, 12, 12, 12);
     }
 
     private void observeViewModel() {

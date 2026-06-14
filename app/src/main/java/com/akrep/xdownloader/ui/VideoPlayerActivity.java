@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,12 +58,14 @@ public class VideoPlayerActivity extends AppCompatActivity {
         btnRewind.setOnClickListener(v -> {
             int pos = videoView.getCurrentPosition() - 10000;
             videoView.seekTo(Math.max(pos, 0));
+            Toast.makeText(this, "-10sn", Toast.LENGTH_SHORT).show();
         });
 
         // 30 Saniye İleri
         btnForward.setOnClickListener(v -> {
             int pos = videoView.getCurrentPosition() + 30000;
             videoView.seekTo(Math.min(pos, videoView.getDuration()));
+            Toast.makeText(this, "+30sn", Toast.LENGTH_SHORT).show();
         });
 
         btnClose.setOnClickListener(v -> finish());

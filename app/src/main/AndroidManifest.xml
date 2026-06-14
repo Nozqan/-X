@@ -59,6 +59,7 @@
         <activity android:name=".ui.LoginActivity" android:label="X Giriş Yap" />
         <activity android:name=".ui.GalleryActivity" android:label="İndirilen Videolar" />
         <activity android:name=".ui.VideoPlayerActivity" android:theme="@style/Theme.AkrepIndirici.NoActionBar" />
+        <activity android:name=".ui.SettingsActivity" android:label="Ayarlar" />
 
     </application>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- X DOWNLOADER Modern Tema Renkleri -->
-    <color name="primary">#FF8C00</color> <!-- Parlak Turuncu -->
+    <color name="primary">#E6B800</color> <!-- Lüks Altın Turuncu -->
     <color name="primary_dark">#000000</color>
     <color name="primary_variant">#1A1A1A</color>
-    <color name="secondary">#FF8C00</color>
+    <color name="secondary">#E6B800</color>
     
     <!-- AMOLED Siyah ve Koyu Griler -->
     <color name="background">#0D0D0D</color> <!-- Çok Koyu Arkaplan -->
@@ -15,7 +15,7 @@
     <color name="text_secondary">#9E9E9E</color>
     <color name="text_hint">#555555</color>
     
-    <color name="orange_accent">#FF8C00</color>
+    <color name="orange_accent">#E6B800</color>
     <color name="divider">#222222</color>
     
     <!-- Kalite Rozetleri İçin (Gerekirse) -->
