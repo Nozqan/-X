@@ -146,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Alt Menü - İndirilenler
-        binding.btnNavDownloads.setOnClickListener(v -> {
+        // Alt Menü - İndirilenler (Home butonu olarak güncellendi)
+        /* binding.btnNavDownloads.setOnClickListener(v -> {
             Intent intent = new Intent(this, GalleryActivity.class);
             startActivity(intent);
             overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
-        });
+        }); */
 
         // Giriş butonu
         binding.btnLogin.setOnClickListener(v -> {
@@ -200,10 +200,6 @@ public class MainActivity extends AppCompatActivity {
             Glide.with(this).load(info.getThumbnailUrl()).into(binding.ivThumbnail);
         } else {
             binding.ivThumbnail.setImageResource(android.R.drawable.ic_menu_gallery);
-        }
-        
-        if (info.getTweetText() != null) {
-            binding.tvTweetText.setText(info.getTweetText());
         }
 
         qualityAdapter = new QualityAdapter(info.getQualities(), quality -> {
