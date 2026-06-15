@@ -1,0 +1,32 @@
+name: Gemini Kod Analiz Ajani
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  gemini_review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Kodu Klonla
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gemini ile Kod ve Hata Analizi
+        uses: google-gemini/gemini-pr-reviewer@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        with:
+          status: "active"
+          language: "tr-TR" # Gemini seninle Türkçe konuşacak
+          system_message: |
+            Sen kıdemli bir Android ve Mobil geliştirici ajansın. 
+            Kodlardaki derleme hatalarını, AAPT2 kaynak hatalarını ve mantık açıklarını bul.
+            Performans optimizasyonları öner ve arayüz geliştirmelerinde yardımcı ol.
+            
