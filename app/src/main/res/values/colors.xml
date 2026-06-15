@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- X DOWNLOADER Modern Tema Renkleri -->
+    <!-- X DOWNLOADER Modern Tema Renkleri (LIGHT MODE) -->
     <color name="primary">#FF6D00</color> <!-- Parlak Turuncu (Kapak için) -->
-    <color name="primary_dark">#000000</color>
-    <color name="primary_variant">#000000</color>
+    <color name="primary_dark">#E55100</color>
+    <color name="primary_variant">#FF8F00</color>
     <color name="secondary">#FF6D00</color>
     
-    <!-- AMOLED Mat Siyah -->
-    <color name="background">#000000</color> <!-- Tam Siyah -->
-    <color name="surface">#121212</color> <!-- Mat Siyah Kartlar -->
-    <color name="surface_variant">#1E1E1E</color>
-    <color name="matte_black">#121212</color>
+    <!-- Light Mode - Beyaz Tema -->
+    <color name="background">#FFFFFF</color> <!-- Beyaz Arka Plan -->
+    <color name="surface">#F5F5F5</color> <!-- Açık Gri Kartlar -->
+    <color name="surface_variant">#EEEEEE</color>
+    <color name="matte_black">#FAFAFA</color>
     <color name="twitter_blue">#1DA1F2</color>
     
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#9E9E9E</color>
-    <color name="text_hint">#555555</color>
+    <color name="text_primary">#1F1F1F</color> <!-- Koyu Metin -->
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
     
     <color name="orange_accent">#FF6D00</color>
-    <color name="divider">#222222</color>
+    <color name="divider">#E0E0E0</color>
     
     <!-- Kalite Rozetleri İçin (Gerekirse) -->
     <color name="quality_high">#FFD700</color>
     <color name="quality_med">#C0C0C0</color>
     <!-- Gradient Renkleri -->
-    <color name="gradient_start">#1A0A00</color>
-    <color name="gradient_end">#0D0D0D</color>
+    <color name="gradient_start">#FFF5E6</color>
+    <color name="gradient_end">#FFFFFF</color>
     <!-- Ripple Efekti -->
     <color name="ripple">#40FF8C00</color>
 </resources>
