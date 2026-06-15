@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- NIGHT MODE (DARK) RENK PALETI -->
+    <color name="primary">#FF6D00</color> <!-- Parlak Turuncu -->
+    <color name="primary_dark">#000000</color>
+    <color name="primary_variant">#000000</color>
+    <color name="secondary">#FF6D00</color>
+    
+    <!-- AMOLED Mat Siyah (Gece Modu) -->
+    <color name="background">#000000</color> <!-- Tam Siyah -->
+    <color name="surface">#0A0A0A</color> <!-- Çok Mat Siyah Kartlar -->
+    <color name="surface_variant">#121212</color>
+    <color name="matte_black">#000000</color>
+    <color name="twitter_blue">#1DA1F2</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_hint">#666666</color>
+    
+    <color name="orange_accent">#FF6D00</color>
+    <color name="divider">#1A1A1A</color>
+    
+    <!-- Gradient Renkleri -->
+    <color name="gradient_start">#000000</color>
+    <color name="gradient_end">#050505</color>
+    <!-- Ripple Efekti -->
+    <color name="ripple">#40FF8C00</color>
+</resources>
