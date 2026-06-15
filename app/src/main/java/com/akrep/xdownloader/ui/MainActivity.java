@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.akrep.xdownloader.databinding.ActivityMainBinding;
 import com.akrep.xdownloader.model.VideoInfo;
 import com.akrep.xdownloader.model.VideoQuality;
-import com.akrep.xdownloader.viewmodel.MainViewModel;
+import com.akrep.xdownloader.ui.MainViewModel;
 import com.bumptech.glide.Glide;
 
 import java.util.concurrent.Executor;
