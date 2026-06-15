@@ -9,6 +9,8 @@ public class VideoInfo {
     private String authorHandle;
     private String tweetText;
     private String thumbnailUrl;
+    private String authorAvatarUrl;
+    private String title;
     private List<VideoQuality> qualities;
     private long duration; // milisaniye
 
@@ -27,9 +29,18 @@ public class VideoInfo {
     public void setTweetText(String tweetText) { this.tweetText = tweetText; }
     public String getThumbnailUrl() { return thumbnailUrl; }
     public void setThumbnailUrl(String thumbnailUrl) { this.thumbnailUrl = thumbnailUrl; }
+    public String getAuthorAvatarUrl() { return authorAvatarUrl; }
+    public void setAuthorAvatarUrl(String authorAvatarUrl) { this.authorAvatarUrl = authorAvatarUrl; }
+    public String getTitle() { return title != null ? title : tweetText; }
+    public void setTitle(String title) { this.title = title; }
     public List<VideoQuality> getQualities() { return qualities; }
     public void setQualities(List<VideoQuality> qualities) { this.qualities = qualities; }
-    public long getDuration() { return duration; }
+    public String getDuration() { 
+        if (duration <= 0) return "00:00 min";
+        long minutes = (duration / 1000) / 60;
+        long seconds = (duration / 1000) % 60;
+        return String.format("%02d:%02d min", minutes, seconds);
+    }
     public void setDuration(long duration) { this.duration = duration; }
 
     public VideoQuality getBestQuality() {

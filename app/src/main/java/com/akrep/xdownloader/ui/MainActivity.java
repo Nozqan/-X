@@ -214,10 +214,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void showVideoResult(VideoInfo info) {
         binding.layoutResult.setVisibility(View.VISIBLE);
+        
+        // Thumbnail
         if (info.getThumbnailUrl() != null && !info.getThumbnailUrl().isEmpty()) {
             Glide.with(this).load(info.getThumbnailUrl()).into(binding.ivThumbnail);
         } else {
             binding.ivThumbnail.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
+
+        // Title & Handle
+        binding.tvVideoTitle.setText(info.getTitle() != null ? info.getTitle() : "X Video Downloader");
+        binding.tvUserHandle.setText(info.getAuthorName() != null ? info.getAuthorName() + " • Upload Dünyası" : "X Video • Upload Dünyası");
+        
+        // Duration (Varsayılan veya varsa)
+        binding.tvDuration.setText(info.getDuration() != null ? info.getDuration() : "12:45 min");
+
+        // User Avatar (Varsayılan veya varsa)
+        if (info.getAuthorAvatarUrl() != null && !info.getAuthorAvatarUrl().isEmpty()) {
+            Glide.with(this).load(info.getAuthorAvatarUrl()).circleCrop().into(binding.ivUserAvatar);
         }
 
         qualityAdapter = new QualityAdapter(info.getQualities(), quality -> {
