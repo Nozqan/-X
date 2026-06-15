@@ -18,15 +18,66 @@ jobs:
           fetch-depth: 0
 
       - name: Gemini ile Kod ve Hata Analizi
-        uses: google-gemini/gemini-pr-reviewer@main
+        shell: python
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        with:
-          status: "active"
-          language: "tr-TR" # Gemini seninle Türkçe konuşacak
-          system_message: |
-            Sen kıdemli bir Android ve Mobil geliştirici ajansın. 
-            Kodlardaki derleme hatalarını, AAPT2 kaynak hatalarını ve mantık açıklarını bul.
-            Performans optimizasyonları öner ve arayüz geliştirmelerinde yardımcı ol.
-            
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          import os
+          import subprocess
+          import json
+          import urllib.request
+
+          print("Git diff aliniyor...")
+          try:
+              # Ana dal ile mevcut PR arasindaki farklari yakaliyoruz
+              diff = subprocess.check_output(["git", "diff", "origin/main...HEAD"]).decode("utf-8")
+          except Exception as e:
+              diff = f"Diff alinamadi: {str(e)}"
+
+          if not diff.strip() or len(diff.strip()) < 10:
+              review_text = "Incelenecek anlamli bir kod degisikligi bulunamadi veya PR bos."
+          else:
+              print("Gemini API'sine istek gonderiliyor...")
+              api_key = os.environ.get("GEMINI_API_KEY")
+              url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+              
+              system_instruction = (
+                  "Sen kidemli bir Android ve Mobil gelistirici ajansin. "
+                  "Sana gonderilen kod degisikliklerini (git diff) incele. "
+                  "Olası derleme hatalarini, AAPT2 kaynak hatalarini ve mantik aciklarini tespit et. "
+                  "Performans optimizasyonlari oner ve arayuz gelistirmelerinde yardimci ol. "
+                  "Yanitini tamamen Turkce, yapici ve samimi bir dille yaz."
+              )
+              
+              prompt = f"{system_instruction}\n\nIste incelemen gereken kod degisiklikleri:\n\n```diff\n{diff}\n```"
+              
+              payload = {
+                  "contents": [{
+                      "parts": [{"text": prompt}]
+                  }]
+              }
+              
+              req = urllib.request.Request(
+                  url, 
+                  data=json.dumps(payload).encode("utf-8"), 
+                  headers={"Content-Type": "application/json"}
+              )
+              
+              try:
+                  with urllib.request.urlopen(req) as response:
+                      res_data = json.loads(response.read().decode("utf-8"))
+                      review_text = res_data['candidates'][0]['content']['parts'][0]['text']
+              except Exception as e:
+                  review_text = f"Gemini API cagrisi sirasinde bir hata olustu: {str(e)}"
+
+          # Sonucu markdown dosyasi olarak kaydediyoruz
+          with open("review.md", "w", encoding="utf-8") as f:
+              f.write("### 🤖 Gemini Gelistirici Ajani Incelemesi\n\n" + review_text)
+
+          print("Yorum PR sayfasina ekleniyor...")
+          pr_number = os.environ.get("PR_NUMBER")
+          subprocess.run(["gh", "pr", "comment", pr_number, "--body-file", "review.md"])
+          print("Islem basariyla tamamlandi!")
+          
