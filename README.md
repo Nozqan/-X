@@ -3,8 +3,7 @@
 **Twitter / X Video İndirici** — Android uygulaması
 
 ## Özellikler
-
-
+ 
 // Gemini test yorumu
 
 içeriğimi görebiliyorsun şimdi senden yeni özellikler eklemeni isteyeceğim ama mevcut proje yapısını hiçbir şekilde bozmayacaksın Twitter indirme işlemlerinde hiçbir yere dokunmayacaksın çok güzel gayet başarılı çalışan bir kot var çünkü içerisinde şimdi home tuşunu butonunu TikTok video indirme ekranına çeviriyoruz Bu tamamen tiktok'tan TikTok indirildiği videoları orada gösteren ve yine aynı mantık ile linki ile otomatik yapıştırmayı da oraya yapıştıran indirilen videoları içerisinde geçmiş yeri olan orası tamamen farklı bir pencere olarak işlenecek içerisine indirilen videolara ızgara şeklinde gösterecek ve videoyu her zaman en yüksek kaliteli değdirecek kalite sormayacak kullanıcıya bu birinciyi ilk özelliğimiz 2 özelliğimiz ise geçmiş butonu tuşu bu butonu da Instagram indiriciye çeviriyorum Instagram videolarını yine aynı mantık aynı şekilde orada indirme linki olacak indirilecek yine ızgara şeklinde indirilen videolar geçmişi olacaklar içerisinde ızgara şeklinde görünebilecek en yüksek kalitede indirilecek kullanacağı kalite sormayacak videoda TikTok ve Instagram'da marka kalkacak kullanıcı adı görünmeyecek paylaşan kişinin 
