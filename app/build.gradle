@@ -10,8 +10,8 @@ android {
         applicationId "com.akrep.xdownloader"
         minSdk 24
         targetSdk 34
-        versionCode 13
-        versionName "2.2.5Özkan"
+        versionCode 15
+        versionName "2.2.5Özkan_Final"
     }
 
     signingConfigs {

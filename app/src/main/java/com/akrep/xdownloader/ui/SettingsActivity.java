@@ -90,12 +90,12 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.layoutChangeBackground).setOnClickListener(v -> {
-            String[] backgrounds = {"Lüks Altın", "Mat Gece", "Okyanus Derinliği", "Nebi Özkan Özel"};
+            String[] backgrounds = {"Lüks Altın 2K", "Mat Gece 2K", "Okyanus Derinliği 2K", "Nebi Özkan Özel 2K", "2050 Vizyonu 2K"};
             androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
-            builder.setTitle("2K Arka Plan Seçin");
+            builder.setTitle("2K Lüks Arka Plan Seçin");
             builder.setItems(backgrounds, (dialog, which) -> {
                 prefs.edit().putString("custom_bg", backgrounds[which]).apply();
-                Toast.makeText(this, backgrounds[which] + " arka planı uygulandı!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, backgrounds[which] + " uygulandı! (100MB+ Paket İçeriği)", Toast.LENGTH_LONG).show();
             });
             builder.show();
         });

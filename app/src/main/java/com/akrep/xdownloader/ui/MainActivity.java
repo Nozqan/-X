@@ -127,74 +127,99 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        binding.rvQualities.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvRecentVideos.setLayoutManager(new GridLayoutManager(this, 2));
+        if (binding == null) return;
+
+        if (binding.rvQualities != null) binding.rvQualities.setLayoutManager(new LinearLayoutManager(this));
+        if (binding.rvRecentVideos != null) binding.rvRecentVideos.setLayoutManager(new GridLayoutManager(this, 2));
         
         // İndir butonu (Analiz başlatır)
-        binding.btnAnalyze.setOnClickListener(v -> {
-            String url = binding.etUrl.getText().toString().trim();
-            if (!url.isEmpty()) {
-                viewModel.analyzeUrl(url);
-            } else {
-                Toast.makeText(this, "Lütfen bir link girin", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (binding.btnAnalyze != null) {
+            binding.btnAnalyze.setOnClickListener(v -> {
+                String url = binding.etUrl.getText().toString().trim();
+                if (!url.isEmpty()) {
+                    viewModel.analyzeUrl(url);
+                } else {
+                    Toast.makeText(this, "Lütfen bir link girin", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         // Yapıştır butonu
-        binding.btnPaste.setOnClickListener(v -> {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            if (clipboard != null && clipboard.hasPrimaryClip()) {
-                binding.etUrl.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
-            }
-        });
+        if (binding.btnPaste != null) {
+            binding.btnPaste.setOnClickListener(v -> {
+                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (clipboard != null && clipboard.hasPrimaryClip()) {
+                    binding.etUrl.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
+                }
+            });
+        }
 
         // Seçileni İndir butonu
-        binding.btnDownloadSelected.setOnClickListener(v -> {
-            if (selectedQuality != null) {
-                viewModel.downloadVideo(selectedQuality);
-                Toast.makeText(this, selectedQuality.getLabel() + " indirme başlatıldı", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Lütfen önce bir kalite seçin", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (binding.btnDownloadSelected != null) {
+            binding.btnDownloadSelected.setOnClickListener(v -> {
+                if (selectedQuality != null) {
+                    viewModel.downloadVideo(selectedQuality);
+                    Toast.makeText(this, "İndirme başlatıldı", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Lütfen önce bir kalite seçin", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         // Alt Menü - Home
-        binding.btnNavHome.setOnClickListener(v -> {
-            // Zaten Home'dayız, belki bir scroll up yapılabilir
-            binding.etUrl.requestFocus();
-        });
+        if (binding.btnNavHome != null) {
+            binding.btnNavHome.setOnClickListener(v -> {
+                binding.etUrl.requestFocus();
+            });
+        }
 
         // Alt Menü - İndirilenler (Video Player Butonu)
-        binding.btnNavDownloads.setOnClickListener(v -> {
-            Intent intent = new Intent(this, GalleryActivity.class);
-            startActivity(intent);
-            overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
-        });
+        if (binding.btnNavDownloads != null) {
+            binding.btnNavDownloads.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(this, GalleryActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Galeri açılamadı!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         // Giriş butonu (Twitter Kuşu)
-        binding.btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            overridePendingTransition(com.akrep.xdownloader.R.anim.scale_up, android.R.anim.fade_out);
-        });
+        if (binding.btnLogin != null) {
+            binding.btnLogin.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Giriş ekranı açılamadı!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         
         // Ayarlar butonu
-        binding.btnNavSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(com.akrep.xdownloader.R.anim.fade_in, com.akrep.xdownloader.R.anim.slide_out_left);
-        });
+        if (binding.btnNavSettings != null) {
+            binding.btnNavSettings.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(this, SettingsActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Ayarlar açılamadı!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-        // Geçmiş Butonu (Aynı zamanda Galeriye gider)
-        binding.btnNavHistory.setOnClickListener(v -> {
-            Intent intent = new Intent(this, GalleryActivity.class);
-            startActivity(intent);
-            overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
-        });
-        
-        // Twitter/X Giriş Butonu - Eski Kuş İkonu (Simülasyon)
-        binding.btnLogin.setImageResource(android.R.drawable.ic_menu_send);
-        binding.btnLogin.setPadding(12, 12, 12, 12);
+        // Geçmiş Butonu
+        if (binding.btnNavHistory != null) {
+            binding.btnNavHistory.setOnClickListener(v -> {
+                try {
+                    Intent intent = new Intent(this, GalleryActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Geçmiş açılamadı!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void observeViewModel() {
