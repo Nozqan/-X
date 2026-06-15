@@ -2,10 +2,10 @@ package com.akrep.xdownloader.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import com.akrep.xdownloader.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void setupSettings() {
         // 1. TEMA SEÇİMİ (SİYAH / BEYAZ)
-        Switch switchTheme = findViewById(R.id.switchTheme);
+        SwitchCompat switchTheme = findViewById(R.id.switchDarkTheme);
         if (switchTheme != null) {
             switchTheme.setChecked(prefs.getBoolean("dark_mode", true));
             switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // 2. PARMAK İZİ
-        Switch switchFingerprint = findViewById(R.id.switchFingerprint);
+        SwitchCompat switchFingerprint = findViewById(R.id.switchBiometric);
         if (switchFingerprint != null) {
             switchFingerprint.setChecked(prefs.getBoolean("fingerprint_enabled", false));
             switchFingerprint.setOnCheckedChangeListener((buttonView, isChecked) -> {
