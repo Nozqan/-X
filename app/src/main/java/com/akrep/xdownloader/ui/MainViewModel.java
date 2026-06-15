@@ -23,6 +23,7 @@ public class MainViewModel extends AndroidViewModel {
     private final MutableLiveData<VideoInfo> videoInfo = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<String> loadingMessage = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
 
     private final XVideoExtractor extractor;
     private final ExecutorService executor;
@@ -37,6 +38,8 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<VideoInfo> getVideoInfo() { return videoInfo; }
     public LiveData<String> getErrorMessage() { return errorMessage; }
     public LiveData<String> getLoadingMessage() { return loadingMessage; }
+    public LiveData<Boolean> getIsLoading() { return isLoading; }
+    public LiveData<String> getError() { return errorMessage; }
 
     /**
      * Tweet URL'sini analiz et
@@ -44,15 +47,18 @@ public class MainViewModel extends AndroidViewModel {
     public void analyzeUrl(String url) {
         if (url == null || url.trim().isEmpty()) {
             errorMessage.setValue("URL boş olamaz");
+            isLoading.setValue(false);
             return;
         }
 
         String tweetId = XVideoExtractor.extractTweetId(url.trim());
         if (tweetId == null) {
             errorMessage.setValue("Geçersiz Twitter/X URL'si.\nÖrnek: https://x.com/kullanici/status/1234567890");
+            isLoading.setValue(false);
             return;
         }
 
+        isLoading.setValue(true);
         state.setValue(State.ANALYZING);
         loadingMessage.setValue("Tweet analiz ediliyor...");
 
@@ -73,6 +79,8 @@ public class MainViewModel extends AndroidViewModel {
             } catch (Exception e) {
                 errorMessage.postValue(e.getMessage() != null ? e.getMessage() : "Bilinmeyen hata oluştu");
                 state.postValue(State.ERROR);
+            } finally {
+                isLoading.postValue(false);
             }
         });
     }
