@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Alt Gezinti Menüsü
+    Sekme isimleri güncellendi:
+      - Home      → TikTok
+      - Downloads → Twitter  (Twitter kodu değişmedi)
+      - History   → Instagram
+      - Settings  → Ayarlar (ikon güncellendi)
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_tiktok"
+        android:icon="@drawable/ic_tiktok"
+        android:title="TikTok" />
+
+    <item
+        android:id="@+id/nav_twitter"
+        android:icon="@drawable/ic_twitter"
+        android:title="Twitter" />
+
+    <item
+        android:id="@+id/nav_instagram"
+        android:icon="@drawable/ic_instagram"
+        android:title="Instagram" />
+
+    <!--
+        Ayarlar ikonu: ic_settings_modern
+        Eski ikon (2004 emoji stili) kaldırıldı.
+        Yeni ikon: temiz çizgi stili dişli simgesi (bkz. drawable/ic_settings_modern.xml)
+    -->
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_modern"
+        android:title="Ayarlar" />
+
+</menu>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tiktok_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0A0A0A"
+    android:padding="16dp">
+
+    <!-- Başlık -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TikTok İndirici"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Watermarksız · En yüksek kalite · Otomatik yapıştırma"
+        android:textSize="12sp"
+        android:textColor="#888888"
+        android:layout_marginBottom="20dp" />
+
+    <!-- URL Giriş -->
+    <EditText
+        android:id="@+id/tiktok_url_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TikTok video linkini buraya yapıştır"
+        android:textColorHint="#666666"
+        android:textColor="#FFFFFF"
+        android:background="#1A1A1A"
+        android:padding="14dp"
+        android:inputType="textUri"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:layout_marginBottom="12dp" />
+
+    <!-- İndir Butonu -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tiktok_download_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="İndir"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="10dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Durum metni -->
+    <TextView
+        android:id="@+id/tiktok_status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp" />
+
+    <!-- İlerleme çubuğu -->
+    <ProgressBar
+        android:id="@+id/tiktok_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Geçmiş başlığı -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tiktok_history_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="İndirilen Videolar"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/tiktok_clear_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:contentDescription="Geçmişi temizle"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Izgara geçmişi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tiktok_history_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false" />
+
+</LinearLayout>

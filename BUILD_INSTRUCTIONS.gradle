@@ -1,0 +1,57 @@
+// ============================================================
+// build.gradle (Module: app) — Yeni bağımlılıklar
+// Mevcut bağımlılıklarınızın ALTINA ekleyin.
+// Twitter ile ilgili hiçbir şeyi değiştirmeyin.
+// ============================================================
+
+dependencies {
+
+    // ── Mevcut bağımlılıklarınız burada kalır ──────────────
+
+    // ── Yeni eklenenler ─────────────────────────────────────
+
+    // Room — Video geçmiş veritabanı (TikTok + Instagram)
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Coroutines — Arka planda indirme işlemleri
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+
+    // OkHttp — Video URL çözümleme ve indirme
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"
+
+    // Glide — Grid'de video thumbnail gösterimi
+    implementation "com.github.bumptech.glide:glide:4.16.0"
+    kapt "com.github.bumptech.glide:compiler:4.16.0"
+
+    // Material Design 3 — MaterialButton, BottomNavigationView
+    // (Zaten mevcut ise versiyon güncellemesi yapılabilir)
+    implementation "com.google.android.material:material:1.11.0"
+
+    // CardView — Ayarlar tema kartları
+    implementation "androidx.cardview:cardview:1.0.0"
+
+}
+
+// ============================================================
+// AndroidManifest.xml'e eklenecek izinler:
+// ============================================================
+//
+// <uses-permission android:name="android.permission.INTERNET" />
+// <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+//     android:maxSdkVersion="32" />
+// <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+//     android:maxSdkVersion="29" />
+// <!-- Android 10+ için gerekmez, MediaStore kullanılır -->
+//
+// ============================================================
+// kapt eklentisi için plugins bloğuna ekleyin:
+// ============================================================
+//
+// plugins {
+//     ...
+//     id 'kotlin-kapt'   // Room için zorunlu
+// }
