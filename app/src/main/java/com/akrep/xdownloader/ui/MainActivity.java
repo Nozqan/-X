@@ -38,12 +38,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        
         prefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        
+        // Tema Ayarı Uygula
+        if (prefs.getBoolean("dark_theme", true)) {
+            setTheme(androidx.appcompat.R.style.Theme_AppCompat_NoActionBar);
+        } else {
+            setTheme(androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar);
+        }
+        
+        setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         
         if (prefs.getBoolean("biometric_lock", false)) {
+            // binding.layoutMainContent.setVisibility(View.GONE); // Eğer layout'ta bu ID yoksa hata verir, layout'u kontrol etmeliyim
             checkBiometric();
         } else {
             initApp();
@@ -56,11 +65,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                initApp();
+                runOnUiThread(() -> {
+                    initApp();
+                });
             }
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                Toast.makeText(MainActivity.this, "Giriş Reddedildi: " + errString, Toast.LENGTH_LONG).show();
                 finish();
             }
             @Override
@@ -71,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Nebi Özkan - Güvenli Giriş")
-                .setSubtitle("Lütfen kimliğinizi doğrulayın")
+                .setSubtitle("Lütfen parmak izinizi okutun")
                 .setNegativeButtonText("Çıkış")
                 .build();
 
@@ -131,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         // Yapıştır butonu
         binding.btnPaste.setOnClickListener(v -> {
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            if (clipboard.hasPrimaryClip()) {
+            if (clipboard != null && clipboard.hasPrimaryClip()) {
                 binding.etUrl.setText(clipboard.getPrimaryClip().getItemAt(0).getText());
             }
         });
@@ -146,14 +158,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Alt Menü - İndirilenler (Home butonu olarak güncellendi)
-        /* binding.btnNavDownloads.setOnClickListener(v -> {
+        // Alt Menü - İndirilenler (Video Player Butonu)
+        binding.btnNavDownloads.setOnClickListener(v -> {
             Intent intent = new Intent(this, GalleryActivity.class);
             startActivity(intent);
             overridePendingTransition(com.akrep.xdownloader.R.anim.slide_in_right, com.akrep.xdownloader.R.anim.slide_out_left);
-        }); */
+        });
 
-        // Giriş butonu
+        // Giriş butonu (Twitter Kuşu)
         binding.btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -167,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(com.akrep.xdownloader.R.anim.fade_in, com.akrep.xdownloader.R.anim.slide_out_left);
         });
 
-        // Geçmiş Butonu
+        // Geçmiş Butonu (Aynı zamanda Galeriye gider)
         binding.btnNavHistory.setOnClickListener(v -> {
             Intent intent = new Intent(this, GalleryActivity.class);
             startActivity(intent);
