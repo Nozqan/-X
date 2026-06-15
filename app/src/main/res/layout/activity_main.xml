@@ -161,69 +161,115 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ALT NAV (LÜKS) -->
+    <!-- ALT NAV (GÖRSELDEKİ LÜKS TASARIM) -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="72dp"
         android:background="@color/matte_black"
         android:gravity="center"
         android:orientation="horizontal"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Home -->
         <LinearLayout
+            android:id="@+id/btnNavHome"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@android:drawable/ic_menu_view"
-                app:tint="@color/orange_accent" />
+                app:tint="@color/text_secondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary" />
         </LinearLayout>
 
+        <!-- İndirilenler (Aktif/Turuncu Görseldeki gibi) -->
         <LinearLayout
             android:id="@+id/btnNavDownloads"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@android:drawable/stat_sys_download"
-                app:tint="@color/text_secondary" />
+                app:tint="@color/orange_accent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="İndirilenler"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/orange_accent" />
         </LinearLayout>
 
+        <!-- Geçmiş -->
         <LinearLayout
             android:id="@+id/btnNavHistory"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@android:drawable/ic_menu_recent_history"
                 app:tint="@color/text_secondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Geçmiş"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary" />
         </LinearLayout>
 
+        <!-- Ayarlar -->
         <LinearLayout
             android:id="@+id/btnNavSettings"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@android:drawable/ic_menu_manage"
                 app:tint="@color/text_secondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ayarlar"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary" />
         </LinearLayout>
     </LinearLayout>
 

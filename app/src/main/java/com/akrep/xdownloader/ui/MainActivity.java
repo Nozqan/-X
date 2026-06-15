@@ -158,6 +158,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Alt Menü - Home
+        binding.btnNavHome.setOnClickListener(v -> {
+            // Zaten Home'dayız, belki bir scroll up yapılabilir
+            binding.etUrl.requestFocus();
+        });
+
         // Alt Menü - İndirilenler (Video Player Butonu)
         binding.btnNavDownloads.setOnClickListener(v -> {
             Intent intent = new Intent(this, GalleryActivity.class);
